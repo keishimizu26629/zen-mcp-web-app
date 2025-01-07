@@ -1,0 +1,8 @@
+streamlit
+langchain
+langchain_community
+langchain_core
+requests
+vertexai
+langchain_google_vertexai
+google-cloud-aiplatform  # Vertex AIを使う場合に必要

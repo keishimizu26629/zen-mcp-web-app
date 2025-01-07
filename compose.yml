@@ -1,0 +1,23 @@
+services:
+  server:
+    build: ./server
+    container_name: server
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/vertex-ai-service-account.json
+      - PROJECT_ID=zen-app-e3485
+      - LOCATION=asia-northeast1
+    volumes:
+      # アプリケーションコードのマウント
+      - ./server:/app
+      # クレデンシャルファイルのマウント
+      - ./server/vertex-ai-service-account.json:/app/vertex-ai-service-account.json:ro
+    ports:
+      - "8000:8000"
+  
+  host:
+    build: ./host
+    container_name: host
+    depends_on:
+      - server
+    ports:
+      - "8501:8501"
